@@ -11,26 +11,29 @@
             box-sizing: border-box;
             font-family: "Arial", sans-serif;
         }
+
+        /* 全局固定背景 */
         body {
             background-color: #f6f9f7;
             color: #333;
             line-height: 1.6;
-            /* 给固定头部留高度，防止内容被挡住 */
-            padding-top: 110px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 背景不动 */
         }
 
-        /* 标题单独固定 */
+        /* 顶部标题固定 */
         .header {
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 15px 20px;
-            background-color: #f6f9f7;
+            padding: 20px;
+            text-align: left;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: 100;
         }
         .logo {
             font-size: 36px;
@@ -38,52 +41,53 @@
             color: #204a3b;
         }
 
-        /* 导航栏单独固定，在标题下面 */
+        /* 导航栏固定 + 完美垂直居中 */
         .nav {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 15px 20px;
+            padding: 0 20px;
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-
+            align-items: center; /* 垂直居中 */
+            justify-content: flex-start;
+            gap: 28px;
+            height: 60px; /* 固定高度，居中更稳 */
             position: fixed;
-            top: 70px;
+            top: 80px;
             left: 0;
             right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            z-index: 999;
+            z-index: 99;
         }
-
         .nav a {
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
             color: #2a7d63;
-            transition: 0.2s;
+            white-space: nowrap;
         }
         .nav a:hover {
             color: #184d3c;
         }
 
-        /* 正文正常滚动 */
-        .container {
+        /* 中间内容区域：固定大小 + 内部滚动（你要的效果） */
+        .content-box {
+            width: 100%;
             max-width: 1100px;
-            margin: 0 auto 60px;
+            height: calc(100vh - 170px);
+            margin: 0 auto;
+            margin-top: 170px;
             background: #ffffff;
-            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 40px;
+            overflow-y: auto; /* 只有这里可以滚动 */
+            scroll-behavior: smooth;
         }
 
         .section {
             margin-bottom: 50px;
-            /* 锚点跳转不被固定栏挡住 */
-            scroll-margin-top: 130px;
         }
         .section h2 {
             font-size: 24px;
@@ -121,21 +125,20 @@
         }
     </style>
 </head>
+
 <body>
-    <!-- 固定标题 -->
     <div class="header">
         <div class="logo">MyFRIEND</div>
     </div>
 
-    <!-- 固定导航栏 -->
     <div class="nav">
         <a href="#introduction">Introduction</a>
         <a href="#working-group">MyFRIEND Working Group</a>
         <a href="#contact">Contact details</a>
     </div>
 
-    <!-- 滚动内容区域 -->
-    <div class="container">
+    <!-- 中间大盒子：内容在这里面滚动 -->
+    <div class="content-box">
         <div id="introduction" class="section">
             <h2>Introduction</h2>
             <p>MyFRIEND is an international initiative to provide guidance for the use of guidelines in multimorbidity related practice. The MyFRIEND working group was established in 2023, and consists of more than 30 experts in multimorbidity research and guideline development from 13 countries across the world.</p>
